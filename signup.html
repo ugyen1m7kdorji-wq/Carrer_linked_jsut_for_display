@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/favicon.ico" type="image/x-iconk">
+
+</head>
+<body>
+<button id="toggleMode">🌙</button>
+<div class="container">
+    <div class="card">
+        <h2>Sign Up</h2>
+        <p>Create your account</p>
+
+        <form action="signup.php" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p class="link">Already have an account? <a href="index.html">Login</a></p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbar Demo</title>
+  <style>
+    :root {
+      --bg-color: #f0f4ff;
+      --text-color: #ffffff;
+      --nav-bg: #0b7beb;
+      --accent-color: #ffd700;
+      --shadow: 0 4px 20px rgba(11,123,235,0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --nav-bg: #1a1a2e;
+      --accent-color: #37b7ff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
+    header img {
+      width: 80px;
+      height: auto;
+      display: block;
+    }
+
+    .header-scrolled .navbar {
+      box-shadow: var(--shadow);
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: var(--nav-bg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: padding 0.3s, box-shadow 0.3s, background 0.3s;
+      /* FIX: prevent navbar itself from overflowing */
+      position: relative;
+    }
+
+    /* ── LOGO ── */
+    .logo { font-size: 1.5rem; font-weight: bold; color: var(--text-color); }
+    .logo span { color: var(--accent-color); }
+
+    /* ── NAV LINKS ── */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0;
+      transition: none; /* desktop: no slide transition needed */
+    }
+
+    .nav-links li { margin: 0 15px; }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--accent-color);
+    }
+
+    /* ── NAV ACTIONS ── */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* ── THEME TOGGLE ── */
+    #theme-toggle {
+      background: none;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      cursor: pointer;
+      padding: 5px 8px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    #theme-toggle:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .sun-icon, .moon-icon { font-size: 1rem; line-height: 1; }
+
+    /* Default (light): show moon, hide sun */
+    [data-theme="light"] .sun-icon { display: none; }
+    [data-theme="light"] .moon-icon { display: block; }
+
+    /* Dark mode: show sun, hide moon */
+    [data-theme="dark"] .sun-icon { display: block; }
+    [data-theme="dark"] .moon-icon { display: none; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 30px;
+      height: 30px;
+      /* FIX: don't let it shrink */
+      flex-shrink: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2.5px;
+      background: var(--text-color);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+
+    /* Animate to X when open */
+    .hamburger.is-open span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+    .hamburger.is-open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.is-open span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        /* FIX: use left/right 0 so it never overflows */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        background: var(--nav-bg);
+        padding: 2rem 0;
+
+        /* Hidden state — slide up + fade */
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        /* Make sure it sits above header */
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+
+      .nav-links li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a {
+        font-size: 1.3rem;
+        padding: 10px 20px;
+        display: block;
+        border-bottom: none;
+      }
+
+      .nav-links a:hover {
+        background: rgba(255,255,255,0.1);
+        border-radius: 8px;
+      }
+    }
+
+    /* ── DEMO CONTENT ── */
+    .demo-content {
+      padding: 4rem 5%;
+      color: #333;
+    }
+    [data-theme="dark"] .demo-content { color: #ccc; }
+    .demo-content h1 { font-size: 2rem; margin-bottom: 1rem; }
+    .demo-content p { max-width: 600px; line-height: 1.7; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <!-- Replace src with your actual logo -->
+      <img src="group logo.png" alt="Group Logo"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <span style="display:none; color:var(--text-color); font-size:1.4rem; font-weight:bold;">
+        My<span style="color:var(--accent-color)">Brand</span>
+      </span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.1.html">Home</a></li>
+      <li><a href="#employee">Employee</a></li>
+      <li><a href="karma.html">About</a></li>
+      <li><a href="contactN.html">Contact</a></li>
+      <li><a href="service.html">Service</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+      </button>
+
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="demo-content">
+  <h1>Navbar Preview</h1>
+  <p>Resize the window to test mobile responsiveness. The hamburger menu will appear on screens narrower than 768px. Dark/light mode persists via localStorage.</p>
+</div>
+
+<script>
+  const htmlElement = document.documentElement;
+  const themeToggleButton = document.getElementById('theme-toggle');
+  const hamburgerMenu = document.getElementById('hamburger');
+  const mobileNavLinks = document.getElementById('nav-links');
+  const stickyHeader = document.querySelector('header');
+
+  // ── THEME ──
+  const initializeTheme = () => {
+    const savedTheme = localStorage.getItem('portal-theme') || 'light';
+    htmlElement.setAttribute('data-theme', savedTheme);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('portal-theme', newTheme);
+  };
+
+  // ── HAMBURGER ──
+  const toggleMobileMenu = () => {
+    const isOpen = mobileNavLinks.classList.toggle('active');
+    hamburgerMenu.classList.toggle('is-open', isOpen);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
+
+  const closeMobileMenu = () => {
+    mobileNavLinks.classList.remove('active');
+    hamburgerMenu.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  // ── SCROLL ──
+  const handleHeaderScroll = () => {
+    stickyHeader.classList.toggle('header-scrolled', window.scrollY > 20);
+  };
+
+  // ── INIT ──
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();
+
+    themeToggleButton.addEventListener('click', toggleTheme);
+
+    hamburgerMenu.addEventListener('click', toggleMobileMenu);
+
+    // Keyboard accessibility for hamburger
+    hamburgerMenu.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') toggleMobileMenu();
+    });
+
+    // Close menu when a nav link is clicked (good UX on mobile)
+    mobileNavLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close menu on resize back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMobileMenu();
+    });
+
+    window.addEventListener('scroll', handleHeaderScroll);
+  });
+</script>
+
+</body>
+</html>

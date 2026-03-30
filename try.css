@@ -1,0 +1,155 @@
+:root {
+    /* Dark Mode (Default) */
+    --bg-color: #0f172a;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --text-main: #ffffff;
+    --text-dim: #94a3b8;
+    --accent: #ffd700;
+    --border: rgba(255, 215, 0, 0.2);
+    --glass: blur(12px);
+}
+
+[data-theme="light"] {
+    /* Light Mode */
+    --bg-color: #f8fafc;
+    --card-bg: #ff0a0a;
+    --text-main: #1e293b;
+    --text-dim: #64748b;
+    --accent: #d97706; /* Slightly deeper gold for white bg */
+    --border: rgba(0, 0, 0, 0.1);
+    --glass: blur(5px);
+}
+
+
+[data-theme="light"] {
+    /* 1. Background: Not white, but "Cool Alabaster" (#f1f5f9) */
+    --bg-color: #494949;
+    
+    /* 2. Cards: Pure white with a thick "Soft Shadow" instead of borders */
+    --card-bg: #ed1313;
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    
+    /* 3. Text: "Midnight Blue" (#1e293b) for extreme readability */
+    --text-main: #ffffff;
+    --text-dim: #0f1620;
+    
+    /* 4. Accent: "Deep Amber" (#b45309) - Gold that works on white */
+    --accent: #b45309; 
+    
+    /* 5. Glass Effect: More subtle, like frosted crystal */
+    --border: rgba(0, 0, 0, 0.05);
+    --glass: blur(8px);
+}
+
+.analysis-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--card-shadow); /* This is the key for Light Mode */
+}
+
+/* Hover effect to make it feel "Alive" */
+.analysis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.bot-bubble {
+    background: var(--card-bg);
+    color: var(--text-main);
+    box-shadow: var(--card-shadow);
+    border-left: 5px solid var(--accent);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.analysis-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: var(--glass);
+}
+:root {
+    --bhutan-gold: #ffd700;
+    --deep-blue: #0f172a;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+.mission-map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+}
+
+.hero-mission { text-align: center; margin-bottom: 80px; }
+.badge-royal { display: inline-block; padding: 6px 15px; background: var(--bhutan-gold); color: #000; border-radius: 50px; font-weight: 700; font-size: 12px; margin-bottom: 20px; }
+h1 { font-size: 3.5rem; letter-spacing: -2px; margin: 0; }
+
+/* Discovery Zone Split */
+.discovery-zone {
+    display: flex;
+    gap: 40px;
+    background: var(--glass);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 30px;
+    padding: 40px;
+    margin-bottom: 60px;
+}
+
+.chat-engine { flex: 3; }
+.radar-visual { flex: 2; background: rgba(0,0,0,0.2); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+
+.chat-box { height: 250px; overflow-y: auto; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+.bot-bubble { background: #1e293b; padding: 15px; border-radius: 15px 15px 15px 2px; line-height: 1.5; border-left: 4px solid var(--bhutan-gold); }
+.chat-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+button { background: transparent; border: 1px solid var(--bhutan-gold); color: var(--bhutan-gold); padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+button:hover { background: var(--bhutan-gold); color: #000; }
+
+/* Roadmap Display */
+.roadmap-display { margin-top: 30px; padding: 25px; background: rgba(46, 213, 115, 0.1); border-radius: 15px; display: none; }
+.persona-tester {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+    width: 100%;
+}
+
+.persona-tester p {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.persona-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-small {
+    font-size: 11px;
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.btn-reset {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+.btn-reset:hover {
+    background: #ff4757;
+    color: #fff;
+}

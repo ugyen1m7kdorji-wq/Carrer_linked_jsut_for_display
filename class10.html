@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream Explorer - Class 10</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #106ecd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .logo img {
+      width: 150px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #cce0ff;
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #0b5ed7;
+      color: white;
+      padding: 50px 10% 20px 10%;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer h3, .footer h4 {
+      margin-bottom: 15px;
+    }
+
+    .footer p {
+      color: #f1f1f1;
+    }
+
+    .footer-links ul, .footer-social ul {
+      list-style: none;
+    }
+
+    .footer-links ul li, .footer-social ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a, .footer-social ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-links ul li a:hover,
+    .footer-social ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 15px;
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #106ecd;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <img src="logo1234.png" alt="" style="width:150px;">
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="index.1.html">Home</a></li>
+    <li><a href="service.html">Services</a></li>
+    <li><a href="karma.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-gradient-to-r from-indigo-600 to-purple-500 text-white py-20 px-6 text-center mt-20">
+  <h1 class="text-4xl md:text-5xl font-bold mb-4">Class 10 Stream Explorer</h1>
+  <p class="text-lg md:text-xl">Not sure which stream to pick? Explore your options interactively!</p>
+</section>
+
+<!-- STREAMS -->
+<section class="py-12 px-6 md:px-16">
+  <h2 class="text-2xl font-bold mb-6 text-center">Choose Your Stream</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="bg-purple-500 text-white rounded-2xl p-6 text-center cursor-pointer" data-stream="arts">
+      <h3 class="text-xl font-bold">Arts</h3>
+      <p>Wet Arts & Dry Arts</p>
+    </div>
+
+    <div class="bg-blue-500 text-white rounded-2xl p-6 text-center cursor-pointer" data-stream="science">
+      <h3 class="text-xl font-bold">Science</h3>
+      <p>Pure Science & Bio Science</p>
+    </div>
+
+    <div class="bg-green-500 text-white rounded-2xl p-6 text-center cursor-pointer" data-stream="commerce">
+      <h3 class="text-xl font-bold">Commerce</h3>
+      <p>Business & Accounting</p>
+    </div>
+
+    <div class="bg-orange-500 text-white rounded-2xl p-6 text-center cursor-pointer" data-stream="tvet">
+      <h3 class="text-xl font-bold">TVET</h3>
+      <p>Technical & Vocational</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUB STREAMS -->
+<section id="sub-streams" class="py-12 px-6 md:px-16 hidden">
+  <h2 class="text-2xl font-bold mb-6 text-center" id="sub-stream-title"></h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="sub-stream-cards"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div>
+      <h3>Future linked Career Portal</h3>
+      <p>Connecting Bhutan’s workforce with top employers.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="https://www.facebook.com/share/1GpxK86zHK/" target="_blank">Facebook</a></li>
+        <li><a href="https://www.tiktok.com/@nidup.dorji30" target="_blank">Tik Tok</a></li>
+        <li><a href="https://t.me/Nidupba" target="_blank">Telegram</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 FutureLinkedCarrerPortal</p>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  const subStreams = {
+    arts: [
+      {title:'Wet Arts', description:'Creative arts like painting and sculpture.'},
+      {title:'Dry Arts', description:'Theory subjects like History and Geography.'}
+    ],
+    science: [
+      {title:'Pure Science', description:'Physics, Chemistry, Math.'},
+      {title:'Bio Science', description:'Biology and medical path.'}
+    ],
+    commerce: [
+      {title:'Commerce', description:'Business, accounting, economics.'}
+    ],
+    tvet: [
+      {title:'Technical', description:'Engineering and IT skills.'},
+      {title:'Vocational', description:'Trades like electrician, plumbing.'}
+    ]
+  };
+
+  const streamCards = document.querySelectorAll('[data-stream]');
+  const subSection = document.getElementById('sub-streams');
+  const subTitle = document.getElementById('sub-stream-title');
+  const subContainer = document.getElementById('sub-stream-cards');
+
+  streamCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const stream = card.dataset.stream;
+      subTitle.innerText = card.innerText + " Sub-Streams";
+      subContainer.innerHTML = '';
+
+      subStreams[stream].forEach(sub => {
+        const div = document.createElement('div');
+        div.className = 'bg-white p-6 rounded-xl shadow';
+        div.innerHTML = `<h3 class="font-bold text-indigo-600">${sub.title}</h3><p>${sub.description}</p>`;
+        subContainer.appendChild(div);
+      });
+
+      subSection.classList.remove('hidden');
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="try.css">
+    <link rel="icon" href="image/favicon.ico" type="image/x-iconk">
+
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+        <input type="checkbox" id="checkbox" onclick="toggleTheme()" />
+        <div class="slider round">
+            <span class="mode-icon">🌙</span>
+        </div>
+    </label>
+    <span id="mode-text">Dark Mode</span>
+</div>
+ <div class="mission-map-container">
+    <header class="hero-mission">
+        <div class="badge-royal">13th Five-Year Plan Aligned</div>
+        <h1>YOUR APTITUDE > YOUR MARKS</h1>
+        <p>Discover your role in Bhutan's future. The Gelephu Mindfulness City (GMC) is waiting for your unique traits.</p>
+    </header>
+
+    <section class="discovery-zone">
+        <div class="chat-engine">
+            <div id="missionChat" class="chat-box">
+                <div class="bot-bubble">Kuzuzangpo! Let's build your profile. When you see a problem, do you reach for a <b>Tool</b>, a <b>Pen</b>, or a <b>Calculator</b>?</div>
+            </div>
+            <div class="chat-actions">
+                <button onclick="updateAptitude('technical', 'Tool')">The Tool (Build)</button>
+                <button onclick="updateAptitude('creative', 'Pen')">The Pen (Create)</button>
+                <button onclick="updateAptitude('logic', 'Calculator')">The Calculator (Solve)</button>
+                <div class="persona-tester">
+    <p>Test a National Career Persona:</p>
+    <div class="persona-buttons">
+        <button class="btn-small" onclick="testPersona('architect')">The Tech Architect</button>
+        <button class="btn-small" onclick="testPersona('storyteller')">The Digital Storyteller</button>
+        <button class="btn-small" onclick="testPersona('builder')">The Nation Builder</button>
+        <button class="btn-small btn-reset" onclick="resetRadar()">Reset My Data</button>
+    </div>
+</div>
+            </div>
+        </div>
+        
+        <div class="radar-visual">
+            <canvas id="aptitudeRadar"></canvas>
+            <div class="radar-label">Live Trait Analysis</div>
+        </div>
+    </section>
+
+    <section class="bridge-converter">
+        <h2>The Marks-to-Mission Bridge</h2>
+        <p>Enter your current standing to see your customized route.</p>
+        <div class="bridge-inputs">
+            <input type="number" id="class10Marks" placeholder="Class 10 % (e.g. 55)">
+            <select id="targetSector">
+                <option value="tech">Tech & Innovation (NDI)</option>
+                <option value="finance">GMC Finance & Strategy</option>
+                <option value="infrastructure">Green Energy & Hydro</option>
+            </select>
+            <button class="btn-primary" onclick="generateRoadmap()">Generate My Roadmap</button>
+        </div>
+        <div id="roadmapOutput" class="roadmap-display"></div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</body>
+
+<script src="try.js"></script>
+</html>

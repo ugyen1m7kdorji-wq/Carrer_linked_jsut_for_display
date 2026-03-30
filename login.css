@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("photo_2026-03-15_22-04-42.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99; 
+} 
+
+header img {
+    width: 200px;
+    height: 80px;
+    position: relative;
+    right: 40px;
+}
+
+.loginNav .contex{
+    position: relative;
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.loginNav .contex::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 90px;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s;
+}
+
+.loginNav .contex:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.loginNav .loginNavBtn{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+    margin-left: 40PX;
+    transition: 0.5s;
+}
+
+.loginNav .loginNavBtn a{
+    text-decoration: none;
+}
+
+.loginNav .loginNavBtn:hover {
+    background: #ffffff;
+    color: black;
+}
